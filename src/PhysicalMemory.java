@@ -11,4 +11,5 @@
 public class PhysicalMemory {
     //THIS WILL BE A TWO DIMENSIONAL ARRAY to simulate page-frame #.
     //ADDRESS WIDTH IS 12 BITS.
+    //Dimension.
 }
