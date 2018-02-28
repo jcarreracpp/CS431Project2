@@ -9,6 +9,7 @@
  * @author Jorge
  */
 public class VirtualPageTable {
+    private int[] PageTableEntries;
     //THIS WILL BE AN ARRAY OF PAGE TABLE ENTRIES, so one dimensional array.
     //PAGE OFFSET IS 8 BITS.
 }
