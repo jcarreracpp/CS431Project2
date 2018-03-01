@@ -5,10 +5,11 @@
 import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class CS431Project2 {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         PrintWriter pw = new PrintWriter(new File("result.csv"));
         StringBuilder sb = new StringBuilder();
         sb.append("Address" + ",");
@@ -20,7 +21,7 @@ public class CS431Project2 {
         sb.append("Evicted_pg#,");
         sb.append("Dirty_Evicted_Page\n");
         
-        HardDisk hData = new HardDisk();
+        HardDisk hData = HardDisk.getInstance();
         VirtualPageTable [] pageData = new VirtualPageTable[256];
         TLB [] tlbData = new TLB[256];
         
