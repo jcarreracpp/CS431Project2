@@ -2,7 +2,6 @@
  *
  * @author Jacob
  */
-import java.util.Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,10 +19,10 @@ public class CS431Project2 {
         sb.append("Hit,");
         sb.append("Evicted_pg#,");
         sb.append("Dirty_Evicted_Page\n");
-        
-        HardDisk hData = HardDisk.getInstance();
-        VirtualPageTable [] pageData = new VirtualPageTable[256];
-        TLB [] tlbData = new TLB[256];
+        OperatingSystem os = OperatingSystem.getInstance();
+        os.initOS();
+
+
         
         pw.write(sb.toString());
         pw.close();
