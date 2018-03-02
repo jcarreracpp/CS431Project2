@@ -15,10 +15,17 @@ public class VirtualPageTable {
     private int validBit;
     private int refBit;
     private int dirtyBit;
-    private String pageFrameNum;
+    private int pageFrameNum;
     
     public VirtualPageTable(){
         
+    }
+    
+    public VirtualPageTable(int frameNum){
+        validBit = 1;
+        refBit = 1;
+        dirtyBit = 0;
+        pageFrameNum = frameNum;
     }
     
     public boolean lookup(){
@@ -50,14 +57,13 @@ public class VirtualPageTable {
         return this.dirtyBit;
     }
     
-    public void setPageFrameNum(String pageFrameNum){
+    public void setPageFrameNum(int pageFrameNum){
         this.pageFrameNum = pageFrameNum;
     }
     
     // this method will convert String variable into a integer value, then return it.
     public int getPageFrameNum(){
-        int tempInt = Integer.parseInt(pageFrameNum, 16);
-        return tempInt;
+        return pageFrameNum;
     }
     
 }

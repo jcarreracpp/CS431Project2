@@ -28,6 +28,7 @@ public class TLB {
         this.vPageNum = vPageNum;
     }
     
+    // this method will convert String variable into a integer value, then return it.
     public int getVPageNum(){
         int tempInt = Integer.parseInt(vPageNum, 16);
         return tempInt;
@@ -61,6 +62,7 @@ public class TLB {
         this.pageFrameNum = pageFrameNum;
     }
     
+    // this method will convert String variable into a integer value, then return it.
     public int getPageFrameNum(){
         int tempInt = Integer.parseInt(pageFrameNum, 16);
         return tempInt;

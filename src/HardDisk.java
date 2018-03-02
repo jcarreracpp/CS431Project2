@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,8 +18,6 @@ public class HardDisk {
     private static HardDisk singleton;
     private static char[] hexGuide = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     
-    private HardDisk(){}
-    
     public static HardDisk getInstance() throws FileNotFoundException, IOException{
         if(singleton == null){
             singleton = new HardDisk();
@@ -36,14 +33,11 @@ public class HardDisk {
             pgid = "page_files\\" + pgid;
             pgid = pgid.concat(".pg");
             System.out.println(pgid);
-            FileReader fr = new FileReader(pgid);
-            BufferedReader br = new BufferedReader(fr);
+            BufferedReader br = new BufferedReader(new FileReader(pgid));
             while((pgid = br.readLine()) != null){
                 harddrive[i][counter] = Integer.parseInt(pgid);
                 counter++;
             }
-            br.close();
-            fr.close();
         }
     }
     
@@ -62,5 +56,9 @@ public class HardDisk {
         lead = hexGuide[(i%16)];
         temp += lead;
         return temp;
+    }
+    
+    public static int getValue(int a, int b){
+        return harddrive[a][b];
     }
 }
