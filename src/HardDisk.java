@@ -25,6 +25,7 @@ public class HardDisk {
         if(singleton == null){
             singleton = new HardDisk();
             fillDrive();
+            System.out.println("HDD online.\n\tHDD entry count: 256");
         }
         return singleton;
     }
@@ -35,7 +36,7 @@ public class HardDisk {
             String pgid = hexify(i);
             pgid = "page_files\\" + pgid;
             pgid = pgid.concat(".pg");
-            System.out.println(pgid);
+            //System.out.println(pgid);
             FileReader fr = new FileReader(pgid);
             BufferedReader br = new BufferedReader(fr);
             while((pgid = br.readLine()) != null){

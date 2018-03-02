@@ -9,61 +9,31 @@
  * @author Jorge
  */
 public class TLB {
+    private static TLB singleton;
+    private static TLBEntry[] entries = new TLBEntry[8];
     //THIS will be a one dimensional array of TLB entries. ONLY 8 ENTRIES.
-    private String vPageNum;
-    private int validBit;
-    private int refBit;
-    private int dirtyBit;
-    private String pageFrameNum;
+
     
-    public TLB(){
-        
+    private TLB(){}
+    
+    public static TLB getInstance(){
+        if(singleton == null){
+            singleton = new TLB();
+            System.out.println("TLB online.\n\tTLB entry count: 8");
+        }
+        return singleton;
     }
     
-    public boolean lookup(){
+    public boolean tlbEntryExists(String vpn){
         return false;
     }
     
-    public void setVPageNum(String vPageNum){
-        this.vPageNum = vPageNum;
+    public TLBEntry getEntry(String vpn){
+        TLBEntry hold = new TLBEntry();
+        for(int i = 0; i < entries.length; i++){
+            if(vpn.equals(entries[i].getVPageNum()))
+                hold = entries[i];
+        }
+        return hold;
     }
-    
-    public int getVPageNum(){
-        int tempInt = Integer.parseInt(vPageNum, 16);
-        return tempInt;
-    }
-    
-    public void setValidBit(int validBit){
-        this.validBit = validBit;
-    }
-    
-    public int getValidBit(){
-        return this.validBit;
-    }
-    
-    public void setRefBit(int refBit){
-        this.refBit = refBit;
-    }
-    
-    public int getRefBit(){
-        return this.refBit;
-    }
-    
-    public void setDirtyBit(int dirtyBit){
-        this.dirtyBit = dirtyBit;
-    }
-    
-    public int getDirtyBit(){
-        return this.dirtyBit;
-    }
-    
-    public void setPageFrameNum(String pageFrameNum){
-        this.pageFrameNum = pageFrameNum;
-    }
-    
-    public int getPageFrameNum(){
-        int tempInt = Integer.parseInt(pageFrameNum, 16);
-        return tempInt;
-    }
-    
 }

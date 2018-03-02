@@ -20,13 +20,11 @@ public class OperatingSystem {
     public static OperatingSystem getInstance(){
         if(singleton == null){
             singleton = new OperatingSystem();
+            System.out.println("OS online.\n\tOS clock cycle rate: 20");
         }
         return singleton;
     }
     
-    public void initOS() throws IOException{
-        HardDisk hData = HardDisk.getInstance();
-        VirtualPageTable [] pageData = new VirtualPageTable[256];
-        TLB [] tlbData = new TLB[256];
+    public void initOS(){
     }
 }

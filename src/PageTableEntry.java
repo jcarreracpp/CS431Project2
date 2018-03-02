@@ -8,31 +8,25 @@
  *
  * @author Jorge
  */
-public class VirtualPageTable {
-    //THIS WILL BE AN ARRAY OF PAGE TABLE ENTRIES, so one dimensional array.
-    //PAGE OFFSET IS 8 BITS.
-    private static VirtualPageTable singleton;
-    private PageTableEntry[] ptentries = new PageTableEntry[256];
+class PageTableEntry {
     private int validBit;
     private int refBit;
     private int dirtyBit;
     private String pageFrameNum;
     
-    private VirtualPageTable(){ }
-    
-    public static VirtualPageTable getInstance(){
-        if(singleton == null){
-            singleton = new VirtualPageTable();
-            System.out.println("VPT online.\n\tVPT entry count: 256");
-        }
-        return singleton;
+    public PageTableEntry(){
+        validBit = -1;
+        refBit = -1;
+        dirtyBit = -1;
+        pageFrameNum = null;
     }
     
-    public boolean lookup(){
-        return false;
+    public PageTableEntry(int vb, int rb, int db, String pfn){
+        validBit = vb;
+        refBit = rb;
+        dirtyBit = db;
+        pageFrameNum = pfn;
     }
-    
-     
     public void setValidBit(int validBit){
         this.validBit = validBit;
     }
@@ -61,10 +55,7 @@ public class VirtualPageTable {
         this.pageFrameNum = pageFrameNum;
     }
     
-    // this method will convert String variable into a integer value, then return it.
-    public int getPageFrameNum(){
-        int tempInt = Integer.parseInt(pageFrameNum, 16);
-        return tempInt;
+    public String getPageFrameNum(){
+        return pageFrameNum;
     }
-    
 }
