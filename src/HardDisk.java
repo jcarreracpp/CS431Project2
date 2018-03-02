@@ -57,4 +57,8 @@ public class HardDisk {
         temp += lead;
         return temp;
     }
+    
+    public static int getValue(int a, int b){
+        return harddrive[a][b];
+    }
 }
