@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/TLB.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/CS431Project2.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/PhysicalMemory.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/CPU.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/HardDisk.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/MMU.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/VirtualPageTable.java</file>
-            <file>file:/C:/Users/Jacob/Documents/NetBeansProjects/CS431Project2-master/src/OperatingSystem.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/OperatingSystem.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/TLB.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/MMU.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/PhysicalMemory.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/PageTableEntry.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/CPU.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/CS431Project2.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/TLBEntry.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/HardDisk.java</file>
+            <file>file:/C:/Users/Jorge/Documents/NetBeansProjects/CS431Project2/src/VirtualPageTable.java</file>
         </group>
     </open-files>
 </project-private>

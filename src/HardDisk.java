@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,10 +19,13 @@ public class HardDisk {
     private static HardDisk singleton;
     private static char[] hexGuide = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     
+    private HardDisk(){}
+    
     public static HardDisk getInstance() throws FileNotFoundException, IOException{
         if(singleton == null){
             singleton = new HardDisk();
             fillDrive();
+            System.out.println("HDD online.\n\tHDD entry count: 256");
         }
         return singleton;
     }
@@ -32,12 +36,15 @@ public class HardDisk {
             String pgid = hexify(i);
             pgid = "page_files\\" + pgid;
             pgid = pgid.concat(".pg");
-            System.out.println(pgid);
-            BufferedReader br = new BufferedReader(new FileReader(pgid));
+            //System.out.println(pgid);
+            FileReader fr = new FileReader(pgid);
+            BufferedReader br = new BufferedReader(fr);
             while((pgid = br.readLine()) != null){
                 harddrive[i][counter] = Integer.parseInt(pgid);
                 counter++;
             }
+            br.close();
+            fr.close();
         }
     }
     
@@ -49,6 +56,10 @@ public class HardDisk {
         }
     }
     
+    public int readValue(String address, String value){
+        return harddrive[decimalize(address)][decimalize(value)];
+    }
+    
     private static String hexify(int i){
         String temp = "";
         char lead = hexGuide[(i/16)];
@@ -58,7 +69,16 @@ public class HardDisk {
         return temp;
     }
     
-    public static int getValue(int a, int b){
-        return harddrive[a][b];
+    private static int decimalize(String i){
+        char lead = i.charAt(0);
+        char back = i.charAt(1);
+        int result = 0;
+        for(int j = 0; j < hexGuide.length; j++){
+            if(lead == hexGuide[j]){
+                result = (result + (j*16));}
+            if(back == hexGuide[j]){
+                result = (result + (j));}
+        }
+        return result;
     }
 }
