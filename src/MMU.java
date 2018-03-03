@@ -33,4 +33,8 @@ public class MMU {
         vpt = VirtualPageTable.getInstance();
     }
     
+    public static int readHDD(String a, String v){
+        return hd.readValue(a, v);
+    }
+    
 }

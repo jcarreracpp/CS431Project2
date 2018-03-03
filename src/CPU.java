@@ -14,6 +14,7 @@ import java.io.IOException;
 public class CPU {
     private static CPU singleton;
     private static MMU mmu;
+    private static OperatingSystem os;
     //Will call MMU and TLB frequently. Address width is 12 bits.
     
     private CPU(){}
@@ -29,5 +30,11 @@ public class CPU {
     public static void initCPU() throws IOException{
         mmu = MMU.getInstance();
         mmu.initMMU();
+        os = OperatingSystem.getInstance();
+        os.initOS();
+    }
+    
+    public void doThing(){
+        System.out.println("Accessing data at page FF, value FF: "+mmu.readHDD("FF","FF"));
     }
 }

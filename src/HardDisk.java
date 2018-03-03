@@ -56,6 +56,10 @@ public class HardDisk {
         }
     }
     
+    public int readValue(String address, String value){
+        return harddrive[decimalize(address)][decimalize(value)];
+    }
+    
     private static String hexify(int i){
         String temp = "";
         char lead = hexGuide[(i/16)];
@@ -63,5 +67,18 @@ public class HardDisk {
         lead = hexGuide[(i%16)];
         temp += lead;
         return temp;
+    }
+    
+    private static int decimalize(String i){
+        char lead = i.charAt(0);
+        char back = i.charAt(1);
+        int result = 0;
+        for(int j = 0; j < hexGuide.length; j++){
+            if(lead == hexGuide[j]){
+                result = (result + (j*16));}
+            if(back == hexGuide[j]){
+                result = (result + (j));}
+        }
+        return result;
     }
 }
