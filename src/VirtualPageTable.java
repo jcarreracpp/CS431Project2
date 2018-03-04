@@ -13,27 +13,24 @@ public class VirtualPageTable {
     //PAGE OFFSET IS 8 BITS.
     private static VirtualPageTable singleton;
     private PageTableEntry[] ptentries = new PageTableEntry[256];
-    private static int entryCount;
-   
     
-    public VirtualPageTable(){
-        entryCount = 0;
-    }
+    
+    private VirtualPageTable(){ }
     
     public static VirtualPageTable getInstance(){
         if(singleton == null){
             singleton = new VirtualPageTable();
             System.out.println("VPT online.\n\tVPT entry count: 256");
         }
-        entryCount ++;
         return singleton;
     }
     
-    public boolean lookup(){
-        return false;
+    public boolean ptEntryExists(int pte){
+        boolean result = false;
+        if(ptentries[pte].getPageFrameNum() != null)
+            result = true;
+        return result;
     }
+ 
     
-    public boolean vptEntryExists(String vpn){
-        return false;
-    }
 }

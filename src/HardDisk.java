@@ -60,6 +60,12 @@ public class HardDisk {
         return harddrive[decimalize(address)][decimalize(value)];
     }
     
+    public void writeVlaue(int address, int offset, int writeVal){
+        harddrive[address][offset] = writeVal;
+        System.out.println("Testing Purpose: Input Data: " + writeVal + ". Result: harddrive["+ address +"][" + offset + "] is " + harddrive[address][offset]);
+    }
+    
+    
     private static String hexify(int i){
         String temp = "";
         char lead = hexGuide[(i/16)];

@@ -9,20 +9,30 @@
  * @author Jorge
  */
 public class PhysicalMemory {
-    private int[][] ram = new int[16][256];
-    private static int entryCount;
+    private static int[][] ram = new int[16][256];
+    private static PhysicalMemory singleton;
     //THIS WILL BE A TWO DIMENSIONAL ARRAY to simulate page-frame #.
     //ADDRESS WIDTH IS 12 BITS.
     //Dimension.
-    public PhysicalMemory(){
-        entryCount = 0;
+    private PhysicalMemory(){}
+    
+    public static PhysicalMemory getInstance(){
+        if(singleton == null){
+            singleton = new PhysicalMemory();
+        }
+        return singleton;
     }
     
-    public void storeData(){
-        
+    public int getValue(int page, int index){
+        return ram[page][index];
     }
     
-    public int getEntryCount(){
-        return entryCount;
+     public boolean ramEntryExists(int address, int offset){
+        boolean result = false;
+        for(int i = 0; i < 16; i++){
+            //checks if there's the same address exists.
+        }
+        return result;
     }
+    
 }

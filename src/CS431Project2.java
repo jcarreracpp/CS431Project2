@@ -17,28 +17,23 @@ public class CS431Project2 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         CPU cpu = CPU.getInstance();
         cpu.initCPU();
-        cpu.doThing();
-        // variable declarations
-        int userInt = 0;
-        int valid = -1;
-        int dirty = -1;
-        int reference = -1;
-        int hardMiss = 0;
-        int softMiss = 0;
-        String [] fileNames = {"test_files\\test_1.txt", "test_files\1\test_2.txt", "test_files\\test_3.txt", "test_files\\test_4.txt"};
-        String inFile;
-        String line = null;
-        FileReader fileReader;
-        
-        // object declarations
-        HardDisk hData = HardDisk.getInstance();
-        VirtualPageTable pageData = new VirtualPageTable();
-        TLB tlbData = new TLB();
-        PhysicalMemory memory = new PhysicalMemory();
-        //OperatingSystem os = OperatingSystem.getInstance();
-        //os.initOS();
-        
-        //csv file creation
+        //cpu.doThing();
+        cpu.readInstructions();
+//        // variable declarations
+//        int userInt = 0;
+//        String [] fileNames = {"test_files\\test_1.txt", "test_files\1\test_2.txt", "test_files\\test_3.txt", "test_files\\test_4.txt"};
+//        String inFile;
+//        String line = null;
+//        FileReader fileReader;
+//        
+//        // object declarations
+//        HardDisk hData = HardDisk.getInstance();
+//        //VirtualPageTable [] pageData = new VirtualPageTable[256];
+//        //TLB [] tlbData = new TLB[8];
+//        //OperatingSystem os = OperatingSystem.getInstance();
+//        //os.initOS();
+//        
+//        //csv file creation
 //        PrintWriter pw = new PrintWriter(new File("result.csv"));
 //        StringBuilder sb = new StringBuilder();
 //        sb.append("Address" + ",");
@@ -49,54 +44,28 @@ public class CS431Project2 {
 //        sb.append("Hit,");
 //        sb.append("Evicted_pg#,");
 //        sb.append("Dirty_Evicted_Page\n");
-        
-        //beginning of the actual program
-        userInt = display(); // asking user to choose the input file
-        fileReader = new FileReader(fileNames[userInt - 1]);
-        BufferedReader bReader = new BufferedReader(fileReader);
-        String address = null;
-        String offset = null;
-        String writeVal = null;
-        int pgData = 0;
-        
-        //reading text file
-        while((line = bReader.readLine()) != null){
-            System.out.println(line);
-            if(Integer.parseInt(line) == 0){ //Read
-                System.out.println("Read");
-                line = bReader.readLine();
-                address = line.substring(0, 2);
-                offset = line.substring(2);
-
-//Psudo-Code
+//        
+//        //beginning of the actual program
+//        userInt = display(); // asking user to choose the input file
+//        fileReader = new FileReader(fileNames[userInt - 1]);
+//        BufferedReader bReader = new BufferedReader(fileReader);
+//        String address = null;
+//        String offset = null;
+//        String writeVal = null;
+//        int pgData = 0;
+//        
+//        //reading text file
+//        while((line = bReader.readLine()) != null){
+//            System.out.println(line);
+//            if(Integer.parseInt(line) == 0){ //Read
+//                System.out.println("Read");
+//                line = bReader.readLine();
+//                address = line.substring(0, 2);
+//                offset = line.substring(2);
+//                
+//                //Psudo-Code
+//                /*
 //                if not found in TLB{
-                if(!tlbData.tlbEntryExists(address)){
-                    // if address not found in VPT
-                    if(!pageData.vptEntryExists(address)){
-                        //HARD MISS.
-                        hardMiss = 1;
-                        pgData = hData.readValue(address, offset);
-                        
-                        //check if the main memory is full
-                        if(memory.getEntryCount() == 16){
-                            
-                        }
-                        //write values into the main memory
-                        
-                        //check VPG is full
-                        if(pageData.getEntryCount() > 7){
-                            //FIFO
-                        }
-                        //check TLB is full
-                    }
-                    else{
-                        //SOFT MISS
-                    }
-                    
-                }
-                else{
-                    //HIT
-                }
 //                    if not found in VPT{
 //                        HARD MISS
 //                        pgData = hData.getValue(Integer.parseInt(address, 16), Integer.parseInt(offset, 16));
@@ -123,41 +92,42 @@ public class CS431Project2 {
 //                    save it to the TLB
 //                }
 //                Record Values into CSV File
-                
-                
-              
-                System.out.println(address + "   " + offset); //wrote to check the address and offset are right
-            }
-            else{
-                System.out.println("Write");
-                line = bReader.readLine();
-                address = line.substring(0, 2);
-                offset = line.substring(2);
-                pgData = Integer.parseInt(bReader.readLine());
-                
-                //check TLB
-                
-                //check VirtualPageTable
-                //if not found, hard miss
-
-                //store value into the main memory
-                //store them into Virtual Page Table
-                //store into TLB
-                
-                //record values into the csv file.
-                
-                
-                System.out.println(address + "   " + offset); //wrote to check the address and offset are right
-                
-            }
-        }
-        
-        
-        
-        
-        bReader.close();
+//                */
+//                
+//              
+//                System.out.println(address + "   " + offset); //wrote to check the address and offset are right
+//            }
+//            else{
+//                System.out.println("Write");
+//                line = bReader.readLine();
+//                address = line.substring(0, 2);
+//                offset = line.substring(2);
+//                pgData = Integer.parseInt(bReader.readLine());
+//                
+//                //check TLB
+//                
+//                //check VirtualPageTable
+//                //if not found, hard miss
+//
+//                //store value into the main memory
+//                //store them into Virtual Page Table
+//                //store into TLB
+//                
+//                //record values into the csv file.
+//                
+//                
+//                System.out.println(address + "   " + offset); //wrote to check the address and offset are right
+//                
+//            }
+//        }
+//        
+//        
+//        
+//        
+//        bReader.close();
 //        pw.write(sb.toString());
 //        pw.close();
+//        
     }
     
     public static int display(){
@@ -177,7 +147,6 @@ public class CS431Project2 {
         
         return userInt;
     }
-    
     
     
 }
