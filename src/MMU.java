@@ -74,11 +74,10 @@ public class MMU {
     public void dataForWrite(int[] input, int data){
         //main memory accss
         if(queryRam(input[0], input[1])){
-            //checks the main memory
+            //there is a data found in the main memory.
+            pm.setSingleValu(input[0], input[1], data);
         }
         hd.writeVlaue(input[0], input[1], data);
-        
-        
     }
     
     //Redundant method wrapper, make it look nicer in here.
@@ -91,7 +90,7 @@ public class MMU {
     }
     // checks main memory
     public boolean queryRam(int address, int offset){
-        return pm.ramEntryExists(address, offset);
+        return pm.ramEntryExists(address, offset, hd);
     }
     
     public int getMode(){

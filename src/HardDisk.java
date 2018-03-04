@@ -60,6 +60,10 @@ public class HardDisk {
         return harddrive[decimalize(address)][decimalize(value)];
     }
     
+    public int readValue(int address, int offset){
+        return harddrive[address][offset];
+    }
+    
     public void writeVlaue(int address, int offset, int writeVal){
         harddrive[address][offset] = writeVal;
         System.out.println("Testing Purpose: Input Data: " + writeVal + ". Result: harddrive["+ address +"][" + offset + "] is " + harddrive[address][offset]);

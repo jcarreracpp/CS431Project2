@@ -27,10 +27,25 @@ public class PhysicalMemory {
         return ram[page][index];
     }
     
-     public boolean ramEntryExists(int address, int offset){
+    public void setSingleValu(int address, int offset, int inputVal){
+        ram[address][offset] = inputVal;
+    }
+    
+     public boolean ramEntryExists(int address, int offset, HardDisk harddrive){
         boolean result = false;
+        int checkCounter = 0;
         for(int i = 0; i < 16; i++){
-            //checks if there's the same address exists.
+            //checks if there's the input address is exists on the main memory 
+            // checks the 5 elements of the ram array to check the ram[i][j] == harddrive[address][j]
+            for(int j = 0; j < 10; j++){
+                if(ram[i][j] == harddrive.readValue(address, j)){
+                    checkCounter ++;
+                }
+            }
+            if(checkCounter == 10){
+                return true;
+            }
+            checkCounter = 0;
         }
         return result;
     }
