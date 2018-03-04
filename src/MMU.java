@@ -55,19 +55,30 @@ public class MMU {
         }
     }
     public int pageForRead(int[] input){
+        int hold = -1;
         if(queryTLB(input[0])){
             //HIT
-            return pm.getValue(input[0], input[1]);
+            System.out.println("HIT");
+            return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }else if(queryVPT(input[0])){
             //SOFT MISS
             //So also returns the read value here, but before must also
             //put the virtual page table intothe TLB and physical memory.
-            return 0;
+            System.out.println("SOFT MISS");
+            hold = vpt.returnFrameLocationAt(input[0]);
+            vpt.replaceEntry(input, hold);
+            tlb.addEntry(input[0], hold);
+            return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }else{
             //HARD MISS
             //Returns the read value, but has to put the page from hard drive
             //into the virtual page table, tlb, and physical memory.
-            return 0;
+            System.out.println("HARD MISS");
+            hold = pm.ramFirstOpenSpace();
+            pm.addPage(hold, hd.returnPage(input[0]));
+            vpt.replaceEntry(input, hold);
+            tlb.addEntry(input[0], hold);
+            return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }
     }
     //Redundant method wrapper, make it look nicer in here.
@@ -78,7 +89,7 @@ public class MMU {
     public boolean queryVPT(int page){
         return vpt.ptEntryExists(page);
     }
-    
+
     public int getMode(){
         return mode;
     }

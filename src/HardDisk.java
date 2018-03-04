@@ -56,6 +56,10 @@ public class HardDisk {
         }
     }
     
+    public int[] returnPage(int i){
+        int[] result = harddrive[i];
+        return result;
+    }
     public int readValue(String address, String value){
         return harddrive[decimalize(address)][decimalize(value)];
     }
