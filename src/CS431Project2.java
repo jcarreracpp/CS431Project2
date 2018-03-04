@@ -17,7 +17,8 @@ public class CS431Project2 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         CPU cpu = CPU.getInstance();
         cpu.initCPU();
-        cpu.doThing();
+        //cpu.doThing();
+        cpu.readInstructions();
 //        // variable declarations
 //        int userInt = 0;
 //        String [] fileNames = {"test_files\\test_1.txt", "test_files\1\test_2.txt", "test_files\\test_3.txt", "test_files\\test_4.txt"};

@@ -16,6 +16,7 @@ public class MMU {
     private static MMU singleton;
     private static TLB tlb;
     private static VirtualPageTable vpt;
+    private int mode = 0;
     //THIS WILL USE FIFO for the replacement algorithm.
     private MMU(){}
     
@@ -37,4 +38,22 @@ public class MMU {
         return hd.readValue(a, v);
     }
     
+    public void setMODE(int i){
+        if(i == 1){
+            mode = 1;
+        }else{
+            mode = 0;
+        }
+    }
+    public void printMode(){
+        if(mode == 0){
+        System.out.println("READ");
+        }else{
+            System.out.println("WRITE");
+        }
+    }
+    
+    public int getMode(){
+        return mode;
+    }
 }
