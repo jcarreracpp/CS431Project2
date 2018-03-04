@@ -58,6 +58,7 @@ public class CPU {
                 holdResult = parseToMMU(line);
                 System.out.println("Page: "+ holdResult[0] + ", Index: "+ holdResult[1]);
                 System.out.println();
+                mmu.pageForRead(holdResult);
             }else{
                 holdResult = parseToMMU(line);
                 System.out.println("Page: "+ holdResult[0] + ", Index: "+ holdResult[1]);

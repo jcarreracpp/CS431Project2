@@ -9,8 +9,21 @@
  * @author Jorge
  */
 public class PhysicalMemory {
-    private int[][] ram = new int[16][256];
+    private static int[][] ram = new int[16][256];
+    private static PhysicalMemory singleton;
     //THIS WILL BE A TWO DIMENSIONAL ARRAY to simulate page-frame #.
     //ADDRESS WIDTH IS 12 BITS.
     //Dimension.
+    private PhysicalMemory(){}
+    
+    public static PhysicalMemory getInstance(){
+        if(singleton == null){
+            singleton = new PhysicalMemory();
+        }
+        return singleton;
+    }
+    
+    public int getValue(int page, int index){
+        return ram[page][index];
+    }
 }

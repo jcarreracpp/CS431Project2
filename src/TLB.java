@@ -24,8 +24,13 @@ public class TLB {
         return singleton;
     }
     
-    public boolean tlbEntryExists(String vpn){
-        return false;
+    public boolean tlbEntryExists(int vpn){
+        boolean result = false;
+        for(int i = 0; i < entries.length; i++){
+            if(entries[i].getVPageNum() == vpn)
+                result = true;
+        }
+        return result;
     }
     
     public TLBEntry getEntry(String vpn){

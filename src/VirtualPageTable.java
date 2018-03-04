@@ -28,8 +28,11 @@ public class VirtualPageTable {
         return singleton;
     }
     
-    public boolean lookup(){
-        return false;
+    public boolean ptEntryExists(int pte){
+        boolean result = false;
+        if(ptentries[pte].getPageFrameNum() != null)
+            result = true;
+        return result;
     }
     
      
