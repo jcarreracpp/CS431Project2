@@ -64,6 +64,12 @@ public class HardDisk {
         return harddrive[decimalize(address)][decimalize(value)];
     }
     
+    public void writeToHDD(int page, int input[]){
+        for(int i = 0; i < 256; i++){
+            harddrive[page][i] = input[i];
+        }
+    }
+    
     private static String hexify(int i){
         String temp = "";
         char lead = hexGuide[(i/16)];

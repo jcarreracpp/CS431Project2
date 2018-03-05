@@ -27,6 +27,7 @@ public class PhysicalMemory {
     public void addPage(int location, int[] input){
         for(int i = 0;i < input.length; i++ ){
             ram[location][i] = input[i];
+            markInUse(location);
         }
     }
     
@@ -43,6 +44,14 @@ public class PhysicalMemory {
         return result;
     }
     
+    public void deref(int i){
+        fresh[i] = 0;
+    }
+    
+    public void markInUse(int i){
+        fresh[i] = 1;
+    }
+    
     public void writeValue(int page, int index, int value){
         System.out.println("about to write "+value+" to ram["+page+"]["+index+"]");
         ram[page][index] = value;
@@ -50,5 +59,9 @@ public class PhysicalMemory {
     
     public int getValue(int page, int index){
         return ram[page][index];
+    }
+    
+    public int[] getPage(int page){
+        return ram[page];
     }
 }

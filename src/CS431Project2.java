@@ -12,7 +12,7 @@ public class CS431Project2 {
         CPU cpu = CPU.getInstance();
         cpu.initCPU();
         //cpu.doThing();
-        cpu.readInstructions();
+        cpu.readInstructions("test_3.txt");
 //        // variable declarations
 //        int userInt = 0;
 //        String [] fileNames = {"test_files\\test_1.txt", "test_files\1\test_2.txt", "test_files\\test_3.txt", "test_files\\test_4.txt"};

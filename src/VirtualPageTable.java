@@ -49,13 +49,30 @@ public class VirtualPageTable {
         }
         return result;
     }
+    
+    public int getIDFromFrameNumber(int input){
+        int result = 0;
+        for(int i = 0; i < 256; i++){
+            if(ptentries[i].getPageFrameNum()==input)
+                result = i;
+        }
+        return result;
+    }
 
     public void refreshRBit(int i) {
         ptentries[i].setRefBit(1);
     }
 
-    void setDBit(int i) {
+    public void setDBit(int i) {
         ptentries[i].setRefBit(1);
         ptentries[i].setDirtyBit(1);
+    }
+    
+    public int getDBit(int i){
+        return ptentries[i].getDirtyBit();
+    }
+    
+    public void desetRBit(int i){
+        ptentries[i].setRefBit(0);
     }
 }

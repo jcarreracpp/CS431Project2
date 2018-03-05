@@ -41,7 +41,11 @@ public class TLB {
     }
     
     public void addWrittenEntry(int vPageNum, int pFrameNum) {
-        
+        for(int i = entries.length-2; i >= 0; i--){
+            entries[i+1] = entries[i];
+        }
+        entries[0] = new TLBEntry(vPageNum, pFrameNum);
+        entries[0].setDirtyBit(1);
     }
     
     public void collapseToEnd(){
