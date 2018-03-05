@@ -34,13 +34,18 @@ public class PhysicalMemory {
         boolean found = false;
         int result = -1;
         for(int i = 0; i < fresh.length; i++){
-            if(fresh[i] == 0 || !found){
+            if(fresh[i] == 0 && !found){
                 result = i;
                 found = true;
                 fresh[i] = 1;
             }
         }
         return result;
+    }
+    
+    public void writeValue(int page, int index, int value){
+        System.out.println("about to write "+value+" to ram["+page+"]["+index+"]");
+        ram[page][index] = value;
     }
     
     public int getValue(int page, int index){

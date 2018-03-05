@@ -31,9 +31,9 @@ public class VirtualPageTable {
         }
     }
     
-    public void replaceEntry(int[] input, int pageframe){
+    public void replaceEntry(int[] input,int dbit, int pageframe){
         ptentries[input[0]].setPageFrameNum(pageframe);
-        ptentries[input[0]].setDirtyBit(0);
+        ptentries[input[0]].setDirtyBit(dbit);
         ptentries[input[0]].setValidBit(1);
         ptentries[input[0]].setRefBit(1);
     }
@@ -48,5 +48,14 @@ public class VirtualPageTable {
             result = true;
         }
         return result;
+    }
+
+    public void refreshRBit(int i) {
+        ptentries[i].setRefBit(1);
+    }
+
+    void setDBit(int i) {
+        ptentries[i].setRefBit(1);
+        ptentries[i].setDirtyBit(1);
     }
 }

@@ -2,15 +2,9 @@
  *
  * @author Jacob
  */
-import java.util.Arrays;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Scanner;
-import java.io.Console;
 import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 
 public class CS431Project2 {
