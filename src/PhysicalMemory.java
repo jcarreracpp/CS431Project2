@@ -10,6 +10,7 @@
  */
 public class PhysicalMemory {
     private static int[][] ram = new int[16][256];
+    private int[] fresh = new int[16];
     private static PhysicalMemory singleton;
     //THIS WILL BE A TWO DIMENSIONAL ARRAY to simulate page-frame #.
     //ADDRESS WIDTH IS 12 BITS.
@@ -23,31 +24,31 @@ public class PhysicalMemory {
         return singleton;
     }
     
-    public int getValue(int page, int index){
-        return ram[page][index];
+    public void addPage(int location, int[] input){
+        for(int i = 0;i < input.length; i++ ){
+            ram[location][i] = input[i];
+        }
     }
     
-    public void setSingleValu(int address, int offset, int inputVal){
-        ram[address][offset] = inputVal;
-    }
-    
-     public boolean ramEntryExists(int address, int offset, HardDisk harddrive){
-        boolean result = false;
-        int checkCounter = 0;
-        for(int i = 0; i < 16; i++){
-            //checks if there's the input address is exists on the main memory 
-            // checks the 5 elements of the ram array to check the ram[i][j] == harddrive[address][j]
-            for(int j = 0; j < 10; j++){
-                if(ram[i][j] == harddrive.readValue(address, j)){
-                    checkCounter ++;
-                }
+    public int ramFirstOpenSpace(){
+        boolean found = false;
+        int result = -1;
+        for(int i = 0; i < fresh.length; i++){
+            if(fresh[i] == 0 && !found){
+                result = i;
+                found = true;
+                fresh[i] = 1;
             }
-            if(checkCounter == 10){
-                return true;
-            }
-            checkCounter = 0;
         }
         return result;
     }
     
+    public void writeValue(int page, int index, int value){
+        System.out.println("about to write "+value+" to ram["+page+"]["+index+"]");
+        ram[page][index] = value;
+    }
+    
+    public int getValue(int page, int index){
+        return ram[page][index];
+    }
 }

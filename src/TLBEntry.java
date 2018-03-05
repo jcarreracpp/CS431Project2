@@ -13,16 +13,24 @@ class TLBEntry {
     private int validBit;
     private int refBit;
     private int dirtyBit;
-    private String pageFrameNum;
+    private int pageFrameNum;
     
     public TLBEntry(){
         vPageNum = -1;
         validBit = -1;
         refBit = -1;
         dirtyBit = -1;
-        pageFrameNum = null;
+        pageFrameNum = -1;
     }
-    public TLBEntry(int vpn, int vb, int rb, int db, String pfn){
+    public TLBEntry(int vpn, int pfn){
+        vPageNum = vpn;
+        pageFrameNum = pfn;
+        validBit = 1;
+        refBit = 1;
+        dirtyBit = 0;
+    }
+    
+    public TLBEntry(int vpn, int vb, int rb, int db, int pfn){
         vPageNum = vpn;
         validBit = vb;
         refBit = rb;
@@ -62,11 +70,11 @@ class TLBEntry {
         return this.dirtyBit;
     }
     
-    public void setPageFrameNum(String pageFrameNum){
+    public void setPageFrameNum(int pageFrameNum){
         this.pageFrameNum = pageFrameNum;
     }
     
-    public String getPageFrameNum(){
+    public int getPageFrameNum(){
         return pageFrameNum;
     }
 }

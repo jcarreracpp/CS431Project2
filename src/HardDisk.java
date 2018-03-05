@@ -56,19 +56,13 @@ public class HardDisk {
         }
     }
     
+    public int[] returnPage(int i){
+        int[] result = harddrive[i];
+        return result;
+    }
     public int readValue(String address, String value){
         return harddrive[decimalize(address)][decimalize(value)];
     }
-    
-    public int readValue(int address, int offset){
-        return harddrive[address][offset];
-    }
-    
-    public void writeVlaue(int address, int offset, int writeVal){
-        harddrive[address][offset] = writeVal;
-        System.out.println("Testing Purpose: Input Data: " + writeVal + ". Result: harddrive["+ address +"][" + offset + "] is " + harddrive[address][offset]);
-    }
-    
     
     private static String hexify(int i){
         String temp = "";

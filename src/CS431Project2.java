@@ -2,15 +2,9 @@
  *
  * @author Jacob
  */
-import java.util.Arrays;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Scanner;
-import java.io.Console;
 import java.io.IOException;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 
 public class CS431Project2 {
@@ -45,82 +39,7 @@ public class CS431Project2 {
 //        sb.append("Evicted_pg#,");
 //        sb.append("Dirty_Evicted_Page\n");
 //        
-//        //beginning of the actual program
-//        userInt = display(); // asking user to choose the input file
-//        fileReader = new FileReader(fileNames[userInt - 1]);
-//        BufferedReader bReader = new BufferedReader(fileReader);
-//        String address = null;
-//        String offset = null;
-//        String writeVal = null;
-//        int pgData = 0;
-//        
-//        //reading text file
-//        while((line = bReader.readLine()) != null){
-//            System.out.println(line);
-//            if(Integer.parseInt(line) == 0){ //Read
-//                System.out.println("Read");
-//                line = bReader.readLine();
-//                address = line.substring(0, 2);
-//                offset = line.substring(2);
-//                
-//                //Psudo-Code
-//                /*
-//                if not found in TLB{
-//                    if not found in VPT{
-//                        HARD MISS
-//                        pgData = hData.getValue(Integer.parseInt(address, 16), Integer.parseInt(offset, 16));
-//                       
-//                        if main memory is full{
-//                            FIFO?
-//                        }
-//                        save data into the Main Memory
-//                        
-//                        if Virtual Page Table is full{
-//                            Clock
-//                        }
-//                        save data into the Virtual Page Table
-//                
-//                        if TLB is full{
-//                            FIFO
-//                        }
-//                        Save data into the TLB
-//                
-//                        break;
-//                    }
-//                    SOFT MISS
-//                    get the virtual Page table value
-//                    save it to the TLB
-//                }
-//                Record Values into CSV File
-//                */
-//                
-//              
-//                System.out.println(address + "   " + offset); //wrote to check the address and offset are right
-//            }
-//            else{
-//                System.out.println("Write");
-//                line = bReader.readLine();
-//                address = line.substring(0, 2);
-//                offset = line.substring(2);
-//                pgData = Integer.parseInt(bReader.readLine());
-//                
-//                //check TLB
-//                
-//                //check VirtualPageTable
-//                //if not found, hard miss
-//
-//                //store value into the main memory
-//                //store them into Virtual Page Table
-//                //store into TLB
-//                
-//                //record values into the csv file.
-//                
-//                
-//                System.out.println(address + "   " + offset); //wrote to check the address and offset are right
-//                
-//            }
-//        }
-//        
+//       
 //        
 //        
 //        

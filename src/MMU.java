@@ -18,6 +18,8 @@ public class MMU {
     private static TLB tlb;
     private static VirtualPageTable vpt;
     private int mode = 0;
+    private int hitMissVal = 0;
+    private static int hold;
     //THIS WILL USE FIFO for the replacement algorithm.
     private MMU(){}
     
@@ -55,31 +57,74 @@ public class MMU {
         }
     }
     public int pageForRead(int[] input){
+        int hold = -1;
         if(queryTLB(input[0])){
             //HIT
-            return pm.getValue(input[0], input[1]);
+            System.out.println("READ: HIT");
+            vpt.refreshRBit(input[0]);
+            tlb.refreshRBit(input[0]);
+            return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }else if(queryVPT(input[0])){
             //SOFT MISS
             //So also returns the read value here, but before must also
             //put the virtual page table intothe TLB and physical memory.
-            return 0;
+            System.out.println("READ: SOFT MISS");
+            hold = vpt.returnFrameLocationAt(input[0]);
+            vpt.refreshRBit(input[0]);
+            tlb.addReadEntry(input[0], hold);
+            return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }else{
             //HARD MISS
             //Returns the read value, but has to put the page from hard drive
             //into the virtual page table, tlb, and physical memory.
-            return 0;
+            System.out.println("READ: HARD MISS");
+            hold = pm.ramFirstOpenSpace();
+            System.out.println("PAGE FRAME AT"+hold);
+            pm.addPage(hold, hd.returnPage(input[0]));
+            vpt.replaceEntry(input,0, hold);
+            tlb.addReadEntry(input[0], hold);
+            return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }
     }
     
     public void dataForWrite(int[] input, int data){
-        //main memory accss
-        if(queryRam(input[0], input[1])){
-            //there is a data found in the main memory.
-            pm.setSingleValu(input[0], input[1], data);
+        hold = -1;
+        if(queryTLB(input[0])){
+            //HIT
+            System.out.println("WRITE: HIT");
+            hitMissVal = 0;
+            vpt.setDBit(input[0]);
+            tlb.setDBit(input[0]);
+            pm.writeValue(tlb.getPageFrame(input[0]), input[1], data);
+            //return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
+        }else if(queryVPT(input[0])){
+            //SOFT MISS
+            //So also returns the read value here, but before must also
+            //put the virtual page table intothe TLB and physical memory.
+            System.out.println("WRITE: SOFT MISS");
+            hitMissVal = 1;
+            tlb.displayTLB();
+            hold = vpt.returnFrameLocationAt(input[0]);
+            System.out.println("PAGE FRAME AT "+hold);
+            vpt.setDBit(input[0]);
+            tlb.addWrittenEntry(input[0], hold);
+            tlb.displayTLB();
+            pm.writeValue(tlb.getPageFrame(input[0]), input[1], data);
+            //return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
+        }else{
+            //HARD MISS
+            //Returns the read value, but has to put the page from hard drive
+            //into the virtual page table, tlb, and physical memory.
+            System.out.println("WRITE: HARD MISS");
+            hitMissVal = 2;
+            hold = pm.ramFirstOpenSpace();
+            pm.addPage(hold, hd.returnPage(input[0]));
+            vpt.replaceEntry(input,1, hold);
+            tlb.addWrittenEntry(input[0], hold);
+            pm.writeValue(tlb.getPageFrame(input[0]), input[1], data);
+            //return pm.getValue(tlb.getPageFrame(input[0]), input[1]);
         }
-        hd.writeVlaue(input[0], input[1], data);
     }
-    
     //Redundant method wrapper, make it look nicer in here.
     public boolean queryTLB(int page){
         return tlb.tlbEntryExists(page);
@@ -88,12 +133,18 @@ public class MMU {
     public boolean queryVPT(int page){
         return vpt.ptEntryExists(page);
     }
-    // checks main memory
-    public boolean queryRam(int address, int offset){
-        return pm.ramEntryExists(address, offset, hd);
-    }
-    
+
     public int getMode(){
         return mode;
+    }
+    
+    public int getHitMissVal(){
+        return hitMissVal;
+    }
+    public int getFrameNum(){
+        return hold;
+    }
+    public int returnDirtyBit(){
+        return vpt.returnDirtyBit(hold);
     }
 }
